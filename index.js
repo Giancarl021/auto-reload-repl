@@ -1,7 +1,10 @@
 const chokidar = require('chokidar');
 const repl = require('repl');
+const fs = require('fs');
+const { dirname } = require('path');
 
 async function main({ target, moduleName = 'm', input = process.stdin, output = process.stdout }) {
+    const dirPath = fs.lstatSync(target).isDirectory() ? target : dirname(target);
     const path = require.resolve(target);
 
     const r = repl.start({
@@ -9,7 +12,7 @@ async function main({ target, moduleName = 'm', input = process.stdin, output = 
         output
     });
 
-    const ch = chokidar.watch(path, {
+    const ch = chokidar.watch(dirPath, {
         ignoreInitial: true
     });
 
@@ -25,7 +28,9 @@ async function main({ target, moduleName = 'm', input = process.stdin, output = 
     reloadModule();
 
     function reloadModule() {
-        delete require.cache[path];
+        Object.keys(require.cache).forEach(key => {
+            delete require.cache[key];
+        });
         r.context[moduleName] = require(path);
     }
 }
