@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const { argv: args } = require('yargs');
+const repl = require('./index');
+
+const target = args._[0];
+const moduleName = args['module-name'] || args.m || 'm';
+
+async function main() {
+    if (!target) {
+        throw new Error('No target specified');
+    }
+
+    await repl({
+        target,
+        moduleName
+    });
+}
+
+main().catch(err => {
+    console.error('Error: ' + err.message);
+    process.exit(1);
+});
