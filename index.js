@@ -2,12 +2,12 @@ const chokidar = require('chokidar');
 const locate = require('@giancarl021/locate');
 const repl = require('repl');
 
-async function main({ target, moduleName = 'm' }) {
+async function main({ target, moduleName = 'm', input = process.stdin, output = process.stdout }) {
     const path = require.resolve(locate(target, true));
 
     const r = repl.start({
-        input: process.stdin,
-        output: process.stdout
+        input,
+        output
     });
 
     const ch = chokidar.watch(path, {
