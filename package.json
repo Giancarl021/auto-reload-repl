@@ -1,6 +1,6 @@
 {
   "name": "auto-reload-repl",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Auto reloads a REPL when target directory is changed",
   "main": "index.js",
   "repository": "https://github.com/Giancarl021/auto-reload-repl.git",
