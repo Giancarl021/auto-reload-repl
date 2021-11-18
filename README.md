@@ -10,7 +10,7 @@ npm install --global auto-reload-repl
 
 Yarn:
 ```bash
-yarn add global auto-reload-repl
+yarn global add auto-reload-repl
 ```
 
 ### Usage
