@@ -2,8 +2,9 @@
 
 const { argv: args } = require('yargs');
 const repl = require('./index');
+const locate = require('@giancarl021/locate');
 
-const target = args._[0];
+const target = locate(args._[0], true);
 const moduleName = args['module-name'] || args.m || 'm';
 
 async function main() {

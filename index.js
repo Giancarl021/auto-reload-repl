@@ -1,9 +1,8 @@
 const chokidar = require('chokidar');
-const locate = require('@giancarl021/locate');
 const repl = require('repl');
 
 async function main({ target, moduleName = 'm', input = process.stdin, output = process.stdout }) {
-    const path = require.resolve(locate(target, true));
+    const path = require.resolve(target);
 
     const r = repl.start({
         input,
